@@ -1,6 +1,9 @@
 name: Build for Windows
 
 on:
+  push:
+    branches:
+      master
   workflow_dispatch:  # Manual trigger
 
 jobs:
@@ -26,9 +29,9 @@ jobs:
 
     - name: Set up MSYS2 environment
       run: |
-        echo "::add-path::C:/msys64/mingw64/bin"
-        echo "::add-path::C:/msys64/usr/bin"
-
+        echo "C:/msys64/mingw64/bin" >> $GITHUB_PATH
+        echo "C:/msys64/usr/bin" >> $GITHUB_PATH
+        
     - name: Compile the application
       run: |
         make -f Makefile
