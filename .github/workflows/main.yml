@@ -27,12 +27,14 @@ jobs:
           mingw-w64-x86_64-libsndfile
           mingw-w64-x86_64-jsoncpp
 
-    - name: Set up MSYS2 environment
+    - name: Set up MSYS2 environment paths
       run: |
         echo "C:/msys64/mingw64/bin" >> $GITHUB_PATH
         echo "C:/msys64/usr/bin" >> $GITHUB_PATH
-        
+
     - name: Compile the application
+      env:
+        CXXFLAGS: "-I'C:/msys64/mingw64/include'"
       run: |
         make -f Makefile
 
